@@ -1,0 +1,163 @@
+﻿@model IProjenFramework.MvcWebUI.Models.PositionViewModel
+@{
+    ViewBag.Title = "Position";
+    Layout = null;
+}
+
+<div id="content">
+    <section id="widget-grid" class="">
+        <!-- row -->
+        <div class="row">
+
+            @Html.Partial("~/Views/Form/FormMasterPartial.cshtml",
+                new ViewDataDictionary {
+                    { "Id", Model.Position.Id },
+                    { "url", "/Position/DeletePosition"},
+                    { "returnurl", "/Form/List/" + ViewBag.FormID },
+                })
+
+            <!-- NEW WIDGET START -->
+            <article class="col-sm-12 col-md-12 col-lg-12">
+                <!-- Widget ID (each widget will need unique ID)-->
+                <div class="jarviswidget" id="wid-id-8" data-widget-editbutton="false" data-widget-custombutton="false">
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+                        <h2>Pozisyon Tanımlama </h2>
+                    </header>
+                    <!-- widget div-->
+                    <div>
+                        <!-- widget edit box -->
+                        <div class="jarviswidget-editbox">
+                            <!-- This area used as dropdown edit box -->
+                            <p class="lead">@Html.ValidationMessage("ValidationException")</p>
+                        </div>
+                        <!-- end widget edit box -->
+                        <!-- widget content -->
+                        <div class="widget-body no-padding">
+                            @using (Html.BeginForm("AddOrUpdatePosition", "Position", new { formId = ViewBag.FormID }, FormMethod.Post, new { @class = "smart-form", id = "mainform" }))
+                            {
+                                <fieldset>
+                                    <div class="row">
+                                        <label class="label col col-2">Pozisyon Adı</label>
+                                        <section class="col col-4">
+                                            <label class="input">
+                                                @Html.TextBoxFor(m => m.Position.Name)
+                                                @Html.ValidationMessageFor(model => model.Position.Name, "", new { @class = "text-danger" })
+                                            </label>
+                                        </section>
+                                        @Html.HiddenFor(m => m.Position.Id,new { id = "txtPositionId" })
+                                    </div>
+                                    <div class="row">
+                                        <label class="label col col-2">Departman</label>
+                                        <section class="col col-4">
+                                            <label class="input">
+                                                @Html.DropDownListFor(m => m.Position.DepartmentId, new SelectList(Model.Departments, "Id", "Name"), new { @class = "form-control", style = "width:100%", id = "txtDepartmentId" })
+                                                @Html.ValidationMessageFor(model => model.Position.DepartmentId, "", new { @class = "text-danger" })
+                                            </label>
+                                        </section>
+                                    </div>
+                                    <div class="row">
+                                        <label class="label col col-2">Açıklama</label>
+                                        <section class="col col-6">
+                                            <label class="textarea">
+                                                @Html.TextAreaFor(m => m.Position.Description)
+                                                @Html.ValidationMessageFor(model => model.Position.Description, "", new { @class = "text-danger" })
+                                            </label>
+                                        </section>
+                                    </div>
+                                </fieldset>
+                            }
+                        </div>
+                        <!-- end widget content -->
+                    </div>
+                    <!-- end widget div -->
+                </div>
+                <!-- end widget -->
+            </article>
+
+
+
+        </div>
+        <!-- end row -->
+    </section>
+
+
+    <div class="row">
+
+        <!-- NEW WIDGET START -->
+        <article class="col-sm-12 col-md-12 col-lg-12">
+            <!-- Widget ID (each widget will need unique ID)-->
+            <div class="jarviswidget well" id="wid-id-3" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-custombutton="false" data-widget-sortable="false">
+
+                <header>
+                    <span class="widget-icon"> <i class="fa fa-comments"></i> </span>
+                    <h2>Default Tabs with border </h2>
+                </header>
+                <!-- widget div-->
+                <div>
+                    <!-- widget edit box -->
+                    <div class="jarviswidget-editbox">
+                        <!-- This area used as dropdown edit box -->
+                    </div>
+                    <!-- end widget edit box -->
+                    <!-- widget content -->
+                    <div class="widget-body">
+
+                        <ul id="myTab1" class="nav nav-tabs bordered">
+                            <li class="active">
+                                <a href="#s1" data-toggle="tab"><i class="fa fa-fw fa-lg fa-gear"></i>Kullanıcılar</a>
+                            </li>
+                            <li>
+                                <a href="#s2" data-toggle="tab"><i class="fa fa-fw fa-lg fa-gear"></i> Yetkiler</a>
+                            </li>
+                        </ul>
+                        <div id="myTabContent1" class="tab-content padding-10">
+                            <div class="tab-pane fade in active" id="s1">
+                                <div id="content">
+                                    <!-- widget grid -->
+                                    <section id="widget-grid" class="">
+                                        <!-- row -->
+                                        <div class="row">
+                                            <!-- NEW WIDGET START -->
+                                            <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                <table id="jqgrid"></table>
+                                                <div id="pjqgrid"></div>
+                                            </article>
+                                            <!-- WIDGET END -->
+                                        </div>
+                                        <!-- end row -->
+                                    </section>
+                                    <!-- end widget grid -->
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="s2">
+                                <div id="content">
+                                        <!-- widget grid -->
+                                        <section id="widget-grid" class="">
+                                            <!-- row -->
+                                            <div class="row">
+                                                <!-- NEW WIDGET START -->
+                                                <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                    <table id="userright"></table>
+                                                    <div id="pjquserright"></div>
+                                                </article>
+                                                <!-- WIDGET END -->
+                                            </div>
+                                            <!-- end row -->
+                                        </section>
+                                        <!-- end widget grid -->
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end widget content -->
+                </div>
+                <!-- end widget div -->
+            </div>
+            <!-- end widget -->
+        </article>
+    </div>
+</div>
+
+<script src="~/Scripts/ProjectJs/forms/positionFrm.js?v=@typeof(IProjenFramework.MvcWebUI.MvcApplication).Assembly.GetName().Version">
+</script>

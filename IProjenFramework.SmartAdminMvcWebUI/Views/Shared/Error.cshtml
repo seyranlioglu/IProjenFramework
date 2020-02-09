@@ -1,0 +1,11 @@
+﻿
+@{
+    ViewBag.Title = "Error";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Exception exception = ViewData["HandleException"] as Exception;
+}
+
+<h2>Error</h2>
+
+<h4><p> @exception.Message </p></h4>
+
