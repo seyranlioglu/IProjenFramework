@@ -1,0 +1,171 @@
+﻿@model IProjenFramework.MvcWebUI.Models.DepartmentViewModel
+@{
+    ViewBag.Title = "Department";
+    Layout = null;
+}
+<div id="content">
+    <section id="widget-grid" class="">
+        <!-- row -->
+        <div class="row">
+
+            @Html.Partial("~/Views/Form/FormMasterPartial.cshtml",
+                new ViewDataDictionary {
+                    { "Id", Model.Department.Id},
+                    { "url", "/Department/DeleteDepartment"},
+                    { "returnurl", "/Form/List/" + ViewBag.FormID },
+                })
+
+            <!-- NEW WIDGET START -->
+            <article class="col-sm-12 col-md-12 col-lg-12">
+                <!-- Widget ID (each widget will need unique ID)-->
+                <div class="jarviswidget" id="wid-id-8" data-widget-editbutton="false" data-widget-custombutton="false">
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+                        <h2>Departman Tanımlama</h2>
+                    </header>
+                    <!-- widget div-->
+                    <div>
+                        <!-- widget edit box -->
+                        <div class="jarviswidget-editbox">
+                            <!-- This area used as dropdown edit box -->
+                            <p class="lead">@Html.ValidationMessage("ValidationException")</p>
+                        </div>
+                        <!-- end widget edit box -->
+                        <!-- widget content -->
+                        <div class="widget-body no-padding">
+                            @using (Html.BeginForm("AddOrUpdateDepartment", "Department", new { formId = ViewBag.FormID }, FormMethod.Post, new { @class = "smart-form", id = "mainform" }))
+                            {
+                                @*<form action="/Department/AddOrUpdateDepartment/@ViewBag.FormID" method="post" id="mainform" class="smart-form">*@
+                                <fieldset>
+                                    <div class="row">
+                                        <label class="label col col-2">Departman Adı</label>
+                                        <section class="col col-4">
+                                            <label class="input">
+                                                @*  <input type="text" name="Name" id="txtName" value="@Model.Department.Name">*@
+                                                @Html.TextBoxFor(m => m.Department.Name)
+                                                @Html.ValidationMessageFor(model => model.Department.Name, "", new { @class = "text-danger" })
+                                            </label>
+                                        </section>
+                                        <label class="label col col-1">Tarih</label>
+                                        <section class="col col-3">
+                                            <label class="input">
+                                                <i class="icon-append fa fa-calendar"></i>
+                                                @*<input type="text" name="CreateDate" class="datepicker" data-dateformat='dd/mm/yy' value="@Model.Department.CreateDate">*@
+                                                @Html.TextBoxFor(m => m.Department.CreateDate, "{0:dd/MM/yyyy}", new { @class = "datepicker", id = "datepicker" })
+                                                @Html.ValidationMessageFor(model => model.Department.CreateDate, "", new { @class = "text-danger" })
+                                            </label>
+                                        </section>
+                                        @Html.HiddenFor(m => m.Department.Id, new { id = "txtDepartmentId" })
+                                    </div>
+                                    <div class="row">
+                                        <label class="label col col-2">Açıklama</label>
+                                        <section class="col col-6">
+                                            <label class="textarea">
+                                                @*<textarea rows="4" name="Description" id="txtDescription">@Model.Department.Description</textarea>*@
+                                                @Html.TextAreaFor(m => m.Department.Description)
+                                                @Html.ValidationMessageFor(model => model.Department.Description, "", new { @class = "text-danger" })
+                                            </label>
+                                        </section>
+                                    </div>
+                                </fieldset>
+
+                                @*</form>*@
+                            }
+                        </div>
+                        <!-- end widget content -->
+                    </div>
+                    <!-- end widget div -->
+                </div>
+                <!-- end widget -->
+            </article>
+
+
+
+        </div>
+        <!-- end row -->
+    </section>
+
+    @if (Model.Department.Id > 0)
+    {
+        <div class="row">
+            <!-- NEW WIDGET START -->
+            <article class="col-sm-12 col-md-12 col-lg-12">
+                <!-- Widget ID (each widget will need unique ID)-->
+                <div class="jarviswidget well" id="wid-id-3" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-custombutton="false" data-widget-sortable="false">
+
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-comments"></i> </span>
+                        <h2>Default Tabs with border </h2>
+                    </header>
+                    <!-- widget div-->
+                    <div>
+                        <!-- widget edit box -->
+                        <div class="jarviswidget-editbox">
+                            <!-- This area used as dropdown edit box -->
+                        </div>
+                        <!-- end widget edit box -->
+                        <!-- widget content -->
+                        <div class="widget-body">
+
+                            <ul id="myTab1" class="nav nav-tabs bordered">
+                                <li class="active">
+                                    <a href="#s1" data-toggle="tab"><i class="fa fa-fw fa-lg fa-gear"></i>Pozisyonlar</a>
+                                </li>
+                                <li>
+                                    <a href="#s2" data-toggle="tab"><i class="fa fa-fw fa-lg fa-gear"></i> Yetkiler</a>
+                                </li>
+                            </ul>
+                            <div id="myTabContent1" class="tab-content padding-10">
+                                <div class="tab-pane fade in active" id="s1">
+                                    <div id="content">
+                                        <!-- widget grid -->
+                                        <section id="widget-grid" class="">
+                                            <!-- row -->
+                                            <div class="row">
+                                                <!-- NEW WIDGET START -->
+                                                <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                    <table id="jqgrid"></table>
+                                                    <div id="pjqgrid"></div>
+                                                </article>
+                                                <!-- WIDGET END -->
+                                            </div>
+                                            <!-- end row -->
+                                        </section>
+                                        <!-- end widget grid -->
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="s2">
+                                    <div id="content">
+                                        <!-- widget grid -->
+                                        <section id="widget-grid" class="">
+                                            <!-- row -->
+                                            <div class="row">
+                                                <!-- NEW WIDGET START -->
+                                                <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                    <table id="userright"></table>
+                                                    <div id="pjquserright"></div>
+                                                </article>
+                                                <!-- WIDGET END -->
+                                            </div>
+                                            <!-- end row -->
+                                        </section>
+                                        <!-- end widget grid -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end widget content -->
+                    </div>
+                    <!-- end widget div -->
+                </div>
+                <!-- end widget -->
+            </article>
+        </div>
+    }
+
+</div>
+<!-- MAIN CONTENT -->
+<!-- END MAIN CONTENT -->
+
+<script src="~/Scripts/ProjectJs/forms/departmentFrm.js?v=@typeof(IProjenFramework.MvcWebUI.MvcApplication).Assembly.GetName().Version">
+</script>

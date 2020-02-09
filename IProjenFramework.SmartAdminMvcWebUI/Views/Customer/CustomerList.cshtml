@@ -1,0 +1,59 @@
+﻿@{
+    Layout = null;
+}
+
+@model IProjenFramework.MvcWebUI.Models.CustomerListViewModel
+
+@Html.HiddenFor(m => m.FormId, new { id = "FormId" })
+
+<table id="dtCustomer" class="table table-striped table-bordered" width="100%">
+    <thead>
+        <tr>
+            <th style="width:2%"></th>
+            <th class="hasinput" style="width:7%">
+                <input type="number" class="form-control" placeholder="ID" />
+            </th>
+            <th class="hasinput" style="width:15%">
+                <input type="text" class="form-control" placeholder="Firma Adı" />
+            </th>
+            <th class="hasinput" style="width:20%">
+                <input class="form-control" placeholder="Ticari Ünvan" type="text">
+            </th>
+            <th class="hasinput" style="width:10%">
+                <input class="form-control" placeholder="Vergi Dairesi" type="text">
+            </th>
+            <th class="hasinput" style="width:8%">
+                <input class="form-control" placeholder="Vergi No" type="text">
+            </th>
+            <th class="hasinput" style="width:7%">
+                <input class="form-control" placeholder="TC No" type="text">
+            </th>
+            <th class="hasinput" style="width:10%">
+                <input class="form-control" placeholder="Telefon" type="text">
+            </th>
+            <th class="hasinput" style="width:15%">
+                <input class="form-control" placeholder="Eposta" type="text">
+            </th>
+            <th class="hasinput" style="width:15%">
+                <input class="form-control" placeholder="Web" type="text">
+            </th>
+        </tr>
+        <tr>
+            <th data-class="expand"></th>
+            <th data-class="expand">Id</th>
+            <th data-class="expand">Firma Adı</th>
+            <th data-class="expand">Ticari Ünvan</th>
+            <th data-class="expand">Vergi Dairesi</th>
+            <th data-class="expand">Vergi No</th>
+            <th data-class="expand">TC No</th>
+            <th data-class="expand">Telefon</th>
+            <th data-class="expand">Eposta</th>
+            <th data-class="expand">Web</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+<script src="~/Scripts/ProjectJs/lists/customerLst.js?v=@typeof(IProjenFramework.MvcWebUI.MvcApplication).Assembly.GetName().Version">
+</script>
+
